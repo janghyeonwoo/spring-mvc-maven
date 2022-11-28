@@ -13,8 +13,17 @@ public class HomeController {
     @Autowired
     BoardRepository boardRepository;
 
-    @GetMapping("")
+    @GetMapping("test")
     public String home(){
+        System.out.println("============================");
+        boardRepository.findAll();
+        System.out.println("============================");
+
+        return "ss";
+    }
+
+    @GetMapping("")
+    public String home2(){
         System.out.println("============================");
         boardRepository.findAll();
         System.out.println("============================");
