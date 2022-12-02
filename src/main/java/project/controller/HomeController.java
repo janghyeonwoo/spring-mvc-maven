@@ -1,23 +1,34 @@
 package project.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import project.entity.dto.UserDto;
+import project.entity.Board;
+import project.repository.BoardRepo;
+import project.repository.BoardRepository;
+
+import java.util.List;
 
 
 @RequestMapping("/")
+@RequiredArgsConstructor
 @RestController
 public class HomeController {
 
+    private final BoardRepo boardRepo;
+    private final BoardRepository boardRepository;
 
     @GetMapping("")
-    public ResponseEntity<UserDto> mae(){
-        UserDto userDto = new UserDto();
-        userDto.setUserName("useName");
-        return ResponseEntity.ok(userDto);
+    public ResponseEntity<String> mae(){
+        boardRepository.findAll();
+        return ResponseEntity.ok("aa");
+    }
+
+    @GetMapping("/board/list")
+    public ResponseEntity<List<Board>> getBoardList(){
+        return ResponseEntity.ok(boardRepo.getBoard());
     }
 //
 //    @Autowired
